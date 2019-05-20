@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="Peppa.ChatControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Peppa"
+             mc:Ignorable="d" x:Name="chat">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="110"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <local:ScrollingListBox ItemsSource="{Binding MessageItems,ElementName=chat}" Style="{StaticResource ChatListBoxStyle}">
+            </local:ScrollingListBox>
+
+            <!--<local:Photo Visibility="{Binding PhotoVisibility,ElementName=chat}" ImageSource="pack://application:,,,/Resources/1.jpg" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+            <local:Photo Visibility="{Binding PhotoVisibility,ElementName=chat}" ImageSource="pack://application:,,,/Resources/2.jpg" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="30,0,0,0"/>
+            <local:Photo Visibility="{Binding PhotoVisibility,ElementName=chat}" ImageSource="pack://application:,,,/Resources/3.jpg" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 0 30 0"/>
+            <local:Photo Visibility="{Binding PhotoVisibility,ElementName=chat}" ImageSource="pack://application:,,,/Resources/4.jpg" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-40 0 0 0"/>-->
+
+
+        </Grid>
+        <GridSplitter Height="1" Margin="-10 0" Background="{DynamicResource Accent}" Grid.Row="1" VerticalAlignment="Top"></GridSplitter>
+        <Grid Grid.Row="1" Margin="0 7 0 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="35"/>
+            </Grid.RowDefinitions>
+
+            <TextBox x:Name="tbMessage" Grid.Row="0" Text="{Binding Message,ElementName=chat,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                     Background="Transparent" FontSize="14"
+                     Margin="0,3,0,0" BorderThickness="0" CaretBrush="White"
+                     TextWrapping="Wrap"/>
+
+            <TextBox Grid.Row="0" Visibility="{Binding TooltipVisibility,ElementName=chat}" 
+                     Text="发送内容不能为空" Background="LightGray" 
+                     HorizontalContentAlignment="Center" HorizontalAlignment="Right" 
+                     VerticalAlignment="Bottom" Margin="20,0" Style="{StaticResource ToolTipTextBoxStyle}" 
+                     FontSize="12" Height="35" Width="110"/>
+
+            <StackPanel  Grid.Row="2">
+                <Button x:Name="btnSend" Content="发送" Width="68" Height="26" 
+                        HorizontalAlignment="Right" Margin="0,0,15,0" IsDefault="True" Click="btnSend_Click"/>
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</UserControl>
